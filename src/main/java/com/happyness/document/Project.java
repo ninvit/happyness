@@ -14,7 +14,7 @@ public class Project {
 
     public Project(String name) {
         super();
-        this.id = UUID.randomUUID();
+        this.setId(UUID.randomUUID());
         this.name = name;
     }
 
@@ -24,5 +24,13 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }
