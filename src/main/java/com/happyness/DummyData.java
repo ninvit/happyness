@@ -8,26 +8,23 @@ import reactor.core.publisher.Flux;
 
 import java.util.UUID;
 
-@Component
-public class DummyData implements CommandLineRunner {
-
-    private final ProjectRepository projectRepository;
-
-    DummyData(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        projectRepository.deleteAll()
-                .thenMany(
-                        Flux.just(
-                                "API REST Spring Boot", "Deploy application", "Java11", "Github", "Spring Security",
-                                "RESTFULL WS", "Spring framework"
-                        )
-                                .map(name -> new Project(UUID.randomUUID(), name))
-                                .flatMap(projectRepository::save))
-                .subscribe(System.out::println);
-
-    }
-}
+//@Component
+//public class DummyData implements CommandLineRunner {
+//
+//    private final ProjectRepository projectRepository;
+//
+//    DummyData(ProjectRepository projectRepository) {
+//        this.projectRepository = projectRepository;
+//    }
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//        projectRepository.deleteAll()
+//                .thenMany(
+//                        Flux.just("Selfie da alegria", "Teste webflux")
+//                                .map(name -> new Project(name))
+//                                .flatMap(projectRepository::save))
+//                .subscribe(System.out::println);
+//
+//    }
+//}

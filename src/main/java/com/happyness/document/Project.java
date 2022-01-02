@@ -12,7 +12,10 @@ public class Project {
     private UUID id;
     private String name;
 
-    public Project(UUID randomUUID, String name) {
+    public Project(String name) {
+        super();
+        this.id = UUID.randomUUID();
+        this.name = name;
     }
 
     public String getName() {
