@@ -1,4 +1,4 @@
-package com.happyness;
+package com.happyness.controller;
 
 import com.happyness.document.Project;
 import com.happyness.services.ProjectService;
@@ -14,7 +14,7 @@ import java.util.UUID;
 import static org.springframework.web.reactive.function.BodyInserters.fromPublisher;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
-//@Component
+@Component
 public class ProjectHandler {
 
     @Autowired

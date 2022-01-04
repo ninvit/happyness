@@ -1,4 +1,4 @@
-package com.happyness;
+package com.happyness.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
-//@Configuration
+@Configuration
 public class ProjectRouter {
 
     @Bean

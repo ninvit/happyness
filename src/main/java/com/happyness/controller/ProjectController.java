@@ -12,7 +12,7 @@ import reactor.util.function.Tuple2;
 import java.time.Duration;
 import java.util.UUID;
 
-@RestController
+//@RestController
 public class ProjectController {
 
     @Autowired
