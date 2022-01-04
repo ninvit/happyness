@@ -12,9 +12,8 @@ public class Project {
     private UUID id;
     private String name;
 
-    public Project(String name) {
-        super();
-        this.setId(UUID.randomUUID());
+    public Project(UUID id, String name) {
+        this.id = UUID.randomUUID();
         this.name = name;
     }
 
@@ -28,9 +27,5 @@ public class Project {
 
     public UUID getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 }
