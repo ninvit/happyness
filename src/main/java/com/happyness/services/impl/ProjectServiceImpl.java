@@ -1,7 +1,8 @@
-package com.happyness.services;
+package com.happyness.services.impl;
 
 import com.happyness.document.Project;
 import com.happyness.repository.ProjectRepository;
+import com.happyness.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -10,7 +11,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @Service
-public class ProjectServiceImpl implements ProjectService{
+public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     ProjectRepository projectRepository;

@@ -1,6 +1,8 @@
 package com.happyness.controller;
 
+import com.happyness.document.Child;
 import com.happyness.document.Project;
+import com.happyness.services.ChildService;
 import com.happyness.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,6 +22,28 @@ public class ProjectHandler {
     @Autowired
     ProjectService projectService;
 
+    @Autowired
+    ChildService childService;
+
+    public Mono<ServerResponse> findAllChildren(ServerRequest request) {
+        return ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(childService.findAll(), Project.class);
+    }
+
+    public Mono<ServerResponse> findChildById(ServerRequest request) {
+        UUID id = UUID.fromString(request.pathVariable("id"));
+        return ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(childService.findById(id), Project.class);
+    }
+
+    public Mono<ServerResponse> saveChild(ServerRequest request) {
+        final Mono<Child> child = request.bodyToMono(Child.class);
+        return ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromPublisher(child.flatMap(childService::save), Child.class));
+    }
     public Mono<ServerResponse> findAll(ServerRequest request) {
         return ok()
                 .contentType(MediaType.APPLICATION_JSON)

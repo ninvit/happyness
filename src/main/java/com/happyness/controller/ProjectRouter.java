@@ -17,6 +17,9 @@ public class ProjectRouter {
         return RouterFunctions
                 .route(GET("/project").and(accept(MediaType.APPLICATION_JSON)), handler::findAll)
                 .andRoute(GET("/project/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::findById)
-                .andRoute(POST("/project").and(accept(MediaType.APPLICATION_JSON)), handler::save);
+                .andRoute(POST("/project").and(accept(MediaType.APPLICATION_JSON)), handler::save)
+                .andRoute(GET("/child").and(accept(MediaType.APPLICATION_JSON)), handler::findAllChildren)
+                .andRoute(GET("/child/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::findChildById)
+                .andRoute(POST("/child").and(accept(MediaType.APPLICATION_JSON)), handler::saveChild);
     }
 }
