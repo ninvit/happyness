@@ -1,6 +1,5 @@
 package com.happyness;
 
-import com.happyness.document.Project;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
