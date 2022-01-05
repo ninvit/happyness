@@ -1,8 +1,10 @@
 package com.happyness.controller;
 
 import com.happyness.document.Child;
+import com.happyness.document.Family;
 import com.happyness.document.Project;
 import com.happyness.services.ChildService;
+import com.happyness.services.FamilyService;
 import com.happyness.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,17 +27,41 @@ public class ProjectHandler {
     @Autowired
     ChildService childService;
 
+    @Autowired
+
+    FamilyService familyService;
+
+    public Mono<ServerResponse> findAllFamilies(ServerRequest request) {
+        return ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(familyService.findAll(), Family.class);
+    }
+
+    public Mono<ServerResponse> findFamilyById(ServerRequest request) {
+        UUID id = UUID.fromString(request.pathVariable("id"));
+        return ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(familyService.findById(id), Family.class);
+    }
+
+    public Mono<ServerResponse> saveFamily(ServerRequest request) {
+        final Mono<Family> family = request.bodyToMono(Family.class);
+        return ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(fromPublisher(family.flatMap(familyService::save), Family.class));
+    }
+
     public Mono<ServerResponse> findAllChildren(ServerRequest request) {
         return ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(childService.findAll(), Project.class);
+                .body(childService.findAll(), Child.class);
     }
 
     public Mono<ServerResponse> findChildById(ServerRequest request) {
         UUID id = UUID.fromString(request.pathVariable("id"));
         return ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(childService.findById(id), Project.class);
+                .body(childService.findById(id), Child.class);
     }
 
     public Mono<ServerResponse> saveChild(ServerRequest request) {
@@ -44,6 +70,7 @@ public class ProjectHandler {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(fromPublisher(child.flatMap(childService::save), Child.class));
     }
+
     public Mono<ServerResponse> findAll(ServerRequest request) {
         return ok()
                 .contentType(MediaType.APPLICATION_JSON)
