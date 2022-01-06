@@ -7,6 +7,7 @@ import com.happyness.services.ChildService;
 import com.happyness.services.FamilyService;
 import com.happyness.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -49,6 +50,11 @@ public class ProjectHandler {
         return ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(fromPublisher(family.flatMap(familyService::save), Family.class));
+    }
+
+    public Mono<ServerResponse> deleteFamily(ServerRequest request) {
+        familyService.delete(UUID.fromString(request.pathVariable("id")));
+        return ServerResponse.noContent().build();
     }
 
     public Mono<ServerResponse> findAllChildren(ServerRequest request) {

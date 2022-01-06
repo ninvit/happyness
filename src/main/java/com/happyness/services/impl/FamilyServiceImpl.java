@@ -1,7 +1,6 @@
 package com.happyness.services.impl;
 
 import com.happyness.document.Family;
-import com.happyness.document.Project;
 import com.happyness.repository.FamilyRepository;
 import com.happyness.services.FamilyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +29,11 @@ public class FamilyServiceImpl implements FamilyService {
     @Override
     public Mono<Family> save(Family family) {
         return familyRepository.save(family);
+    }
+
+    @Override
+    public Mono<Void> delete(UUID id) {
+        System.out.println(id);
+        return familyRepository.deleteById(id);
     }
 }

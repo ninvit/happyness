@@ -25,6 +25,7 @@ public class ProjectRouter {
 
                 .andRoute(GET("/family").and(accept(MediaType.APPLICATION_JSON)), handler::findAllFamilies)
                 .andRoute(GET("/family/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::findFamilyById)
-                .andRoute(POST("/family").and(accept(MediaType.APPLICATION_JSON)), handler::saveFamily);
+                .andRoute(POST("/family").and(accept(MediaType.APPLICATION_JSON)), handler::saveFamily)
+                .andRoute(DELETE("/family/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::deleteFamily);
     }
 }

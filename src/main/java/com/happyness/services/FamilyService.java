@@ -11,4 +11,5 @@ public interface FamilyService {
     Flux<Family> findAll();
     Mono<Family> findById(UUID id);
     Mono<Family> save(Family project);
+    Mono<Void> delete(UUID id);
 }
